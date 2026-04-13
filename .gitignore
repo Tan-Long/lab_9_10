@@ -4,3 +4,4 @@ __pycache__/
 chroma_db/
 results/
 .dummy*
+.hf_home/

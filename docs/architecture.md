@@ -18,7 +18,7 @@
 ```
 
 **Mô tả ngắn gọn:**
-> TODO: Mô tả hệ thống trong 2-3 câu. Nhóm xây gì? Cho ai dùng? Giải quyết vấn đề gì?
+Hệ thống này là một trợ lý RAG nội bộ cho khối CS và IT Helpdesk, dùng để trả lời câu hỏi chính sách và quy trình vận hành dựa trên tài liệu nội bộ đã được index. Pipeline gồm 4 bước chính: index tài liệu, retrieve context phù hợp, generate câu trả lời grounded, và đánh giá bằng scorecard. Mục tiêu là giảm hallucination, tăng khả năng trích dẫn nguồn và hỗ trợ đội vận hành tra cứu nhanh các thông tin như SLA, approval và refund policy.
 
 ---
 
@@ -27,22 +27,22 @@
 ### Tài liệu được index
 | File | Nguồn | Department | Số chunk |
 |------|-------|-----------|---------|
-| `policy_refund_v4.txt` | policy/refund-v4.pdf | CS | TODO |
-| `sla_p1_2026.txt` | support/sla-p1-2026.pdf | IT | TODO |
-| `access_control_sop.txt` | it/access-control-sop.md | IT Security | TODO |
-| `it_helpdesk_faq.txt` | support/helpdesk-faq.md | IT | TODO |
-| `hr_leave_policy.txt` | hr/leave-policy-2026.pdf | HR | TODO |
+| `policy_refund_v4.txt` | policy/refund-v4.pdf | CS | sinh tự động khi chạy `build_index()` |
+| `sla_p1_2026.txt` | support/sla-p1-2026.pdf | IT | sinh tự động khi chạy `build_index()` |
+| `access_control_sop.txt` | it/access-control-sop.md | IT Security | sinh tự động khi chạy `build_index()` |
+| `it_helpdesk_faq.txt` | support/helpdesk-faq.md | IT | sinh tự động khi chạy `build_index()` |
+| `hr_leave_policy.txt` | hr/leave-policy-2026.pdf | HR | sinh tự động khi chạy `build_index()` |
 
 ### Quyết định chunking
 | Tham số | Giá trị | Lý do |
 |---------|---------|-------|
-| Chunk size | TODO tokens | TODO |
-| Overlap | TODO tokens | TODO |
-| Chunking strategy | Heading-based / paragraph-based | TODO |
+| Chunk size | 400 tokens (xấp xỉ 1600 ký tự) | Cân bằng giữa độ đầy đủ ngữ cảnh và chi phí embedding/retrieval |
+| Overlap | 80 tokens (xấp xỉ 320 ký tự) | Giữ tính liên tục giữa các đoạn, giảm mất ý tại ranh giới chunk |
+| Chunking strategy | Heading-based + paragraph fallback | Ưu tiên ranh giới tự nhiên theo section, sau đó tách nhỏ nếu section dài |
 | Metadata fields | source, section, effective_date, department, access | Phục vụ filter, freshness, citation |
 
 ### Embedding model
-- **Model**: TODO (OpenAI text-embedding-3-small / paraphrase-multilingual-MiniLM-L12-v2)
+- **Model**: `paraphrase-multilingual-MiniLM-L12-v2` (Sentence Transformers, chạy local)
 - **Vector store**: ChromaDB (PersistentClient)
 - **Similarity metric**: Cosine
 
@@ -61,15 +61,14 @@
 ### Variant (Sprint 3)
 | Tham số | Giá trị | Thay đổi so với baseline |
 |---------|---------|------------------------|
-| Strategy | TODO (hybrid / dense) | TODO |
-| Top-k search | TODO | TODO |
-| Top-k select | TODO | TODO |
-| Rerank | TODO (cross-encoder / MMR) | TODO |
-| Query transform | TODO (expansion / HyDE / decomposition) | TODO |
+| Strategy | Hybrid (Dense + BM25, RRF) | Đổi từ Dense sang Hybrid để tăng precision cho truy vấn có keyword mạnh |
+| Top-k search | 10 | Không đổi (giữ nguyên để đảm bảo A/B chỉ đổi 1 biến chính) |
+| Top-k select | 3 | Không đổi |
+| Rerank | Không dùng | Không đổi |
+| Query transform | Không dùng | Không đổi |
 
 **Lý do chọn variant này:**
-> TODO: Giải thích tại sao chọn biến này để tune.
-> Ví dụ: "Chọn hybrid vì corpus có cả câu tự nhiên (policy) lẫn mã lỗi và tên chuyên ngành (SLA ticket P1, ERR-403)."
+Chọn hybrid retrieval vì bộ tài liệu chứa cả câu văn tự nhiên (policy) lẫn thuật ngữ/mã chuyên biệt (SLA, approval, refund terms). Dense retrieval cho độ phủ ngữ nghĩa tốt nhưng đôi lúc kéo theo semantic noise; BM25 giúp neo theo từ khóa quan trọng. Kết hợp Dense + BM25 bằng RRF cho kết quả ổn định hơn trong các câu hỏi mang tính tra cứu quy định.
 
 ---
 
@@ -96,7 +95,7 @@ Answer:
 ### LLM Configuration
 | Tham số | Giá trị |
 |---------|---------|
-| Model | TODO (gpt-4o-mini / gemini-1.5-flash) |
+| Model | `gemini-3-flash` (mặc định) hoặc `gpt-4o-mini` (fallback qua env) |
 | Temperature | 0 (để output ổn định cho eval) |
 | Max tokens | 512 |
 
@@ -118,7 +117,7 @@ Answer:
 
 ## 6. Diagram (tùy chọn)
 
-> TODO: Vẽ sơ đồ pipeline nếu có thời gian. Có thể dùng Mermaid hoặc drawio.
+Sơ đồ dưới đây mô tả flow hiện tại của pipeline từ query đến answer + citation.
 
 ```mermaid
 graph LR

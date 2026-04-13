@@ -171,6 +171,12 @@ def call_llm(prompt: str) -> str:
     Gọi LLM (Gemini hoặc OpenAI) để sinh câu trả lời grounded.
     """
     provider = os.getenv("LLM_PROVIDER", "gemini").lower()
+
+    if provider == "mock":
+        # Offline fallback for lab environments without API keys.
+        if "Output strictly valid JSON" in prompt:
+            return '{"score": 3, "reason": "Mock evaluator output (no API key)."}'
+        return "Không đủ dữ liệu để trả lời chắc chắn từ ngữ cảnh hiện có. [1]"
     
     if provider == "gemini":
         import google.generativeai as genai
