@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Helpdesk | RAG Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span style="font-weight: 700; color: var(--primary);">CS/IT</span> Helpdesk
+        </div>
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('chat')">Chat Agent</button>
+            <button class="tab-btn" onclick="switchTab('dashboard')">Index Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('eval')">Evaluation</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- CHAT VIEW -->
+        <div id="chat-view" class="view active">
+            <div class="sidebar glass">
+                <div class="setting-group">
+                    <h3>Search Mode</h3>
+                    <select id="retrieval-mode">
+                        <option value="dense">Dense (Vector Only)</option>
+                        <option value="hybrid">Hybrid (Vector + BM25)</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <h3>Retrieval Top-K</h3>
+                    <select id="top-k">
+                        <option value="3">3 Chunks</option>
+                        <option value="5">5 Chunks</option>
+                        <option value="10" selected>10 Chunks</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div id="chat-messages" class="glass">
+                    <div class="message ai">
+                        Xin chào Nguyen_Huu_Quang! Tôi là trợ lý ảo hỗ trợ chính sách nội bộ. Tôi có thể giúp gì cho bạn hôm nay?
+                    </div>
+                </div>
+                <div class="input-area">
+                    <input type="text" id="user-input" placeholder="Type your question here...">
+                    <button class="send-btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard-view" class="view">
+            <div class="indicator glass">
+                <h3>Total Chunks Indexed</h3>
+                <h2 id="chunk-count">--</h2>
+                <p id="db-status" style="color: var(--text-dim); font-size: 0.8rem;"></p>
+                <div style="margin-top: 2rem;">
+                    <button class="reindex-btn" onclick="runIndexing()">Re-build Index (Sprint 1)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVALUATION VIEW -->
+        <div id="eval-view" class="view">
+            <div id="eval-content" class="markdown-body glass">
+                Loading evaluation results...
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
