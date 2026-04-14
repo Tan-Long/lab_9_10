@@ -1,0 +1,107 @@
+{
+  "task": "Ticket P1 lúc 2am — escalation xảy ra thế nào?",
+  "route_reason": "task contains SLA/ticket keyword(s): ['p1', 'ticket', 'escalation'] | risk_high flagged: ['2am']",
+  "risk_high": true,
+  "needs_tool": false,
+  "hitl_triggered": false,
+  "hitl_decision": "",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "=== Phần 2: SLA theo mức độ ưu tiên ===\n\nTicket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản ",
+      "source": "sla_p1_2026.txt",
+      "score": 0.5726,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    },
+    {
+      "text": ": 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla_p1_2026.txt",
+      "score": 0.5715,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    },
+    {
+      "text": "=== Phần 3: Quy trình xử lý sự cố P1 ===\n\nBước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
+      "source": "sla_p1_2026.txt",
+      "score": 0.5267,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    },
+    {
+      "text": "=== Phần 4: Công cụ và kênh liên lạc ===\nTicket system: Jira (project IT-SUPPORT)\nSlack channel: #incident-p1, #incident-p2\nPagerDuty: Tự động nhắn on-call khi P1 ticket mới\nHotline on-call: ext. 9999 (24/7)",
+      "source": "sla_p1_2026.txt",
+      "score": 0.4804,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    },
+    {
+      "text": "SLA TICKET - QUY ĐỊNH XỬ LÝ SỰ CỐ\nSource: support/sla-p1-2026.pdf\nDepartment: IT\nEffective Date: 2026-01-15\nAccess: internal",
+      "source": "sla_p1_2026.txt",
+      "score": 0.462,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "sla_p1_2026.txt"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Khi một ticket P1 được tạo lúc 2am, quy trình escalation diễn ra như sau:\n\n1. **Phản hồi ban đầu**: Phải được thực hiện trong vòng 15 phút.\n2. **Escalation**: Nếu không có phản hồi trong 10 phút, ticket sẽ tự động escalate lên Senior Engineer.\n\nDo đó, nếu không có phản hồi trong khoảng thời gian quy định, escalation sẽ xảy ra sau 10 phút từ lúc ticket được tạo. [1]",
+  "sources": [
+    "sla_p1_2026.txt"
+  ],
+  "confidence": 0.52,
+  "history": [
+    "[supervisor] received task: Ticket P1 lúc 2am — escalation xảy ra thế nào?",
+    "[supervisor] route=retrieval_worker reason=task contains SLA/ticket keyword(s): ['p1', 'ticket', 'escalation'] | risk_high flagged: ['2am']",
+    "[retrieval_worker] retrieved 5 chunks from ['sla_p1_2026.txt']",
+    "[synthesis_worker] answer generated, confidence=0.52, sources=['sla_p1_2026.txt']",
+    "[graph] completed in 2293ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 2293,
+  "run_id": "run_20260414_164457_270158",
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Ticket P1 lúc 2am — escalation xảy ra thế nào?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "sla_p1_2026.txt"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Ticket P1 lúc 2am — escalation xảy ra thế nào?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 367,
+        "sources": [
+          "sla_p1_2026.txt"
+        ],
+        "confidence": 0.52
+      },
+      "error": null
+    }
+  ]
+}

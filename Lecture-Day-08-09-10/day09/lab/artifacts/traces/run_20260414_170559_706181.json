@@ -1,0 +1,120 @@
+{
+  "task": "Mức phạt cụ thể khi nhân viên vi phạm chính sách overtime (làm thêm không có phê duyệt bằng văn bản) là bao nhiêu?",
+  "route_reason": "default: no specific keyword matched → retrieval_worker",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": false,
+  "hitl_decision": "",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "=== Section 1: Phạm vi và mục đích ===\nTài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
+      "source": "access_control_sop.txt",
+      "score": 0.6316,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Điều 1: Phạm vi áp dụng ===\nChính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.6276,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": ": 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla_p1_2026.txt",
+      "score": 0.6217,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    },
+    {
+      "text": "=== Điều 3: Điều kiện áp dụng và ngoại lệ ===\nHoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.6137,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "=== Phần 1: Các loại nghỉ phép ===\n\n1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: C",
+      "source": "hr_leave_policy.txt",
+      "score": 0.6126,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "sla_p1_2026.txt",
+    "policy_refund_v4.txt",
+    "access_control_sop.txt",
+    "hr_leave_policy.txt"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Không đủ thông tin trong tài liệu nội bộ.",
+  "sources": [
+    "sla_p1_2026.txt",
+    "policy_refund_v4.txt",
+    "access_control_sop.txt",
+    "hr_leave_policy.txt"
+  ],
+  "confidence": 0.3,
+  "history": [
+    "[supervisor] received task: Mức phạt cụ thể khi nhân viên vi phạm chính sách overtime (làm thêm không có phê",
+    "[supervisor] route=retrieval_worker reason=default: no specific keyword matched → retrieval_worker",
+    "[retrieval_worker] retrieved 5 chunks from ['sla_p1_2026.txt', 'policy_refund_v4.txt', 'access_control_sop.txt', 'hr_leave_policy.txt']",
+    "[synthesis_worker] answer generated, confidence=0.3, sources=['sla_p1_2026.txt', 'policy_refund_v4.txt', 'access_control_sop.txt', 'hr_leave_policy.txt']",
+    "[graph] completed in 933ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 933,
+  "run_id": "run_20260414_170559_706181",
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Mức phạt cụ thể khi nhân viên vi phạm chính sách overtime (làm thêm không có phê duyệt bằng văn bản) là bao nhiêu?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "sla_p1_2026.txt",
+          "policy_refund_v4.txt",
+          "access_control_sop.txt",
+          "hr_leave_policy.txt"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Mức phạt cụ thể khi nhân viên vi phạm chính sách overtime (làm thêm không có phê duyệt bằng văn bản) là bao nhiêu?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 41,
+        "sources": [
+          "sla_p1_2026.txt",
+          "policy_refund_v4.txt",
+          "access_control_sop.txt",
+          "hr_leave_policy.txt"
+        ],
+        "confidence": 0.3
+      },
+      "error": null
+    }
+  ],
+  "question_id": "eq14"
+}

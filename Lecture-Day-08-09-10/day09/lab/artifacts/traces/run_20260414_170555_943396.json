@@ -1,0 +1,112 @@
+{
+  "task": "Ngày nào trong tuần là ngày onsite bắt buộc theo chính sách remote work?",
+  "route_reason": "default: no specific keyword matched → retrieval_worker",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": false,
+  "hitl_decision": "",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "=== Phần 4: Remote work policy ===\n\n4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
+      "source": "hr_leave_policy.txt",
+      "score": 0.6876,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    },
+    {
+      "text": "- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
+      "source": "hr_leave_policy.txt",
+      "score": 0.5395,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    },
+    {
+      "text": "=== Phần 2: Quy trình xin nghỉ phép ===\n\nBước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
+      "source": "hr_leave_policy.txt",
+      "score": 0.516,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    },
+    {
+      "text": "er.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy.",
+      "source": "access_control_sop.txt",
+      "score": 0.4959,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Phần 1: Các loại nghỉ phép ===\n\n1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: C",
+      "source": "hr_leave_policy.txt",
+      "score": 0.4836,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "access_control_sop.txt",
+    "hr_leave_policy.txt"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Ngày onsite bắt buộc theo chính sách remote work là Thứ 3 và Thứ 5 theo lịch team [1].",
+  "sources": [
+    "access_control_sop.txt",
+    "hr_leave_policy.txt"
+  ],
+  "confidence": 0.54,
+  "history": [
+    "[supervisor] received task: Ngày nào trong tuần là ngày onsite bắt buộc theo chính sách remote work?",
+    "[supervisor] route=retrieval_worker reason=default: no specific keyword matched → retrieval_worker",
+    "[retrieval_worker] retrieved 5 chunks from ['access_control_sop.txt', 'hr_leave_policy.txt']",
+    "[synthesis_worker] answer generated, confidence=0.54, sources=['access_control_sop.txt', 'hr_leave_policy.txt']",
+    "[graph] completed in 1285ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 1285,
+  "run_id": "run_20260414_170555_943396",
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Ngày nào trong tuần là ngày onsite bắt buộc theo chính sách remote work?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "access_control_sop.txt",
+          "hr_leave_policy.txt"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Ngày nào trong tuần là ngày onsite bắt buộc theo chính sách remote work?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 86,
+        "sources": [
+          "access_control_sop.txt",
+          "hr_leave_policy.txt"
+        ],
+        "confidence": 0.54
+      },
+      "error": null
+    }
+  ],
+  "question_id": "eq11"
+}

@@ -1,0 +1,118 @@
+{
+  "task": "ERR-403-AUTH là lỗi gì?",
+  "route_reason": "unknown error code 'err-403' without incident context → human review | human approved → retrieval",
+  "risk_high": true,
+  "needs_tool": false,
+  "hitl_triggered": true,
+  "hitl_decision": "approve",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "CHÍNH SÁCH HOÀN TIỀN - PHIÊN BẢN 4\nSource: policy/refund-v4.pdf\nDepartment: CS\nEffective Date: 2026-02-01\nAccess: internal",
+      "source": "policy_refund_v4.txt",
+      "score": 0.3795,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "QUY TRÌNH KIỂM SOÁT TRUY CẬP HỆ THỐNG (ACCESS CONTROL SOP)\nSource: it/access-control-sop.md\nDepartment: IT Security\nEffective Date: 2026-01-01\nAccess: internal\n\nGhi chú: Tài liệu này trước đây có tên \"Approval Matrix for System Access\".",
+      "source": "access_control_sop.txt",
+      "score": 0.3347,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Section 6: Audit và review định kỳ ===\nIT Security thực hiện access review mỗi 6 tháng.\nMọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
+      "source": "access_control_sop.txt",
+      "score": 0.3261,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Điều 3: Điều kiện áp dụng và ngoại lệ ===\nHoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.3124,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "=== Section 2: VPN và kết nối từ xa ===\n\nQ: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc.",
+      "source": "it_helpdesk_faq.txt",
+      "score": 0.3089,
+      "metadata": {
+        "source": "it_helpdesk_faq.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "it_helpdesk_faq.txt",
+    "policy_refund_v4.txt",
+    "access_control_sop.txt"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Không đủ thông tin trong tài liệu nội bộ.",
+  "sources": [
+    "it_helpdesk_faq.txt",
+    "policy_refund_v4.txt",
+    "access_control_sop.txt"
+  ],
+  "confidence": 0.3,
+  "history": [
+    "[supervisor] received task: ERR-403-AUTH là lỗi gì?",
+    "[supervisor] route=human_review reason=unknown error code 'err-403' without incident context → human review",
+    "[human_review] HITL triggered — awaiting human input",
+    "[human_review] APPROVED — continuing to retrieval",
+    "[retrieval_worker] retrieved 5 chunks from ['it_helpdesk_faq.txt', 'policy_refund_v4.txt', 'access_control_sop.txt']",
+    "[synthesis_worker] answer generated, confidence=0.3, sources=['it_helpdesk_faq.txt', 'policy_refund_v4.txt', 'access_control_sop.txt']",
+    "[graph] completed in 6531ms"
+  ],
+  "workers_called": [
+    "human_review",
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 6531,
+  "run_id": "run_20260414_164337_121689",
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "ERR-403-AUTH là lỗi gì?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "it_helpdesk_faq.txt",
+          "policy_refund_v4.txt",
+          "access_control_sop.txt"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "ERR-403-AUTH là lỗi gì?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 41,
+        "sources": [
+          "it_helpdesk_faq.txt",
+          "policy_refund_v4.txt",
+          "access_control_sop.txt"
+        ],
+        "confidence": 0.3
+      },
+      "error": null
+    }
+  ]
+}

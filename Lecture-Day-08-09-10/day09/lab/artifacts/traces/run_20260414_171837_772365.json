@@ -1,0 +1,267 @@
+{
+  "task": "Cần cấp Level 2 access cho nhân viên chính thức mới chuyển bộ phận. Đồng thời sự cố P2 đang xảy ra. Nêu quy trình cấp quyền và SLA P2 phải đáp ứng.",
+  "route_reason": "task contains policy/access keyword(s): ['cấp quyền', 'level 2', 'access']",
+  "risk_high": false,
+  "needs_tool": true,
+  "hitl_triggered": false,
+  "hitl_decision": "",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "Level 2 Access Control:\n- Phê duyệt bởi: Line Manager, IT Admin\n- Số người phê duyệt: 2\n- Emergency bypass: CÓ\n- Ghi chú: Level 2 có thể cấp tạm thời với approval đồng thời của Line Manager và IT Admin on-call.\n",
+      "source": "access_control_sop.txt",
+      "score": 0.95,
+      "metadata": {
+        "section": "mcp_check_access"
+      }
+    },
+    {
+      "text": "=== Section 3: Quy trình yêu cầu cấp quyền ===\n\nBước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+      "source": "access_control_sop.txt",
+      "score": 0.6624,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Section 2: Phân cấp quyền truy cập ===\n\nLevel 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — A",
+      "source": "access_control_sop.txt",
+      "score": 0.6612,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Section 4: Escalation khi cần thay đổi quyền hệ thống ===\nEscalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "source": "access_control_sop.txt",
+      "score": 0.651,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Section 1: Phạm vi và mục đích ===\nTài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
+      "source": "access_control_sop.txt",
+      "score": 0.6497,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Section 5: Thu hồi quyền truy cập ===\nQuyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
+      "source": "access_control_sop.txt",
+      "score": 0.647,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Section 4: Thiết bị và phần cứng ===\n\nQ: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
+      "source": "it_helpdesk_faq.txt",
+      "score": 0.6262,
+      "metadata": {
+        "source": "it_helpdesk_faq.txt"
+      }
+    },
+    {
+      "text": "=== Phần 1: Định nghĩa mức độ ưu tiên ===\n\nP1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
+      "source": "sla_p1_2026.txt",
+      "score": 0.5784,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    },
+    {
+      "text": "=== Phần 5: Lịch sử phiên bản ===\nv2026.1 (2026-01-15): Cập nhật SLA P1 resolution từ 6 giờ xuống 4 giờ.\nv2025.3 (2025-09-01): Thêm quy trình escalation tự động.\nv2025.1 (2025-03-01): Phiên bản đầu tiên.",
+      "source": "sla_p1_2026.txt",
+      "score": 0.5673,
+      "metadata": {
+        "source": "sla_p1_2026.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "it_helpdesk_faq.txt",
+    "sla_p1_2026.txt",
+    "access_control_sop.txt"
+  ],
+  "policy_result": {
+    "policy_applies": true,
+    "policy_name": "refund_policy_v4",
+    "exceptions_found": [],
+    "source": [
+      "it_helpdesk_faq.txt",
+      "sla_p1_2026.txt",
+      "access_control_sop.txt"
+    ],
+    "policy_version_note": "",
+    "explanation": "Analyzed via rule-based policy check. TODO: upgrade to LLM-based analysis."
+  },
+  "mcp_tools_used": [
+    {
+      "tool": "search_kb",
+      "input": {
+        "query": "Cần cấp Level 2 access cho nhân viên chính thức mới chuyển bộ phận. Đồng thời sự cố P2 đang xảy ra. Nêu quy trình cấp quyền và SLA P2 phải đáp ứng.",
+        "top_k": 8
+      },
+      "output": {
+        "chunks": [
+          {
+            "text": "=== Section 3: Quy trình yêu cầu cấp quyền ===\n\nBước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+            "source": "access_control_sop.txt",
+            "score": 0.6624,
+            "metadata": {
+              "source": "access_control_sop.txt"
+            }
+          },
+          {
+            "text": "=== Section 2: Phân cấp quyền truy cập ===\n\nLevel 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — A",
+            "source": "access_control_sop.txt",
+            "score": 0.6612,
+            "metadata": {
+              "source": "access_control_sop.txt"
+            }
+          },
+          {
+            "text": "=== Section 4: Escalation khi cần thay đổi quyền hệ thống ===\nEscalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+            "source": "access_control_sop.txt",
+            "score": 0.651,
+            "metadata": {
+              "source": "access_control_sop.txt"
+            }
+          },
+          {
+            "text": "=== Section 1: Phạm vi và mục đích ===\nTài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
+            "source": "access_control_sop.txt",
+            "score": 0.6497,
+            "metadata": {
+              "source": "access_control_sop.txt"
+            }
+          },
+          {
+            "text": "=== Section 5: Thu hồi quyền truy cập ===\nQuyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
+            "source": "access_control_sop.txt",
+            "score": 0.647,
+            "metadata": {
+              "source": "access_control_sop.txt"
+            }
+          },
+          {
+            "text": "=== Section 4: Thiết bị và phần cứng ===\n\nQ: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
+            "source": "it_helpdesk_faq.txt",
+            "score": 0.6262,
+            "metadata": {
+              "source": "it_helpdesk_faq.txt"
+            }
+          },
+          {
+            "text": "=== Phần 1: Định nghĩa mức độ ưu tiên ===\n\nP1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
+            "source": "sla_p1_2026.txt",
+            "score": 0.5784,
+            "metadata": {
+              "source": "sla_p1_2026.txt"
+            }
+          },
+          {
+            "text": "=== Phần 5: Lịch sử phiên bản ===\nv2026.1 (2026-01-15): Cập nhật SLA P1 resolution từ 6 giờ xuống 4 giờ.\nv2025.3 (2025-09-01): Thêm quy trình escalation tự động.\nv2025.1 (2025-03-01): Phiên bản đầu tiên.",
+            "source": "sla_p1_2026.txt",
+            "score": 0.5673,
+            "metadata": {
+              "source": "sla_p1_2026.txt"
+            }
+          }
+        ],
+        "sources": [
+          "it_helpdesk_faq.txt",
+          "sla_p1_2026.txt",
+          "access_control_sop.txt"
+        ],
+        "total_found": 8
+      },
+      "error": null,
+      "timestamp": "2026-04-14T17:18:37.819937"
+    },
+    {
+      "tool": "check_access_permission",
+      "input": {
+        "access_level": 2,
+        "requester_role": "engineer",
+        "is_emergency": true
+      },
+      "output": {
+        "access_level": 2,
+        "can_grant": true,
+        "required_approvers": [
+          "Line Manager",
+          "IT Admin"
+        ],
+        "approver_count": 2,
+        "emergency_override": true,
+        "notes": [
+          "Level 2 có thể cấp tạm thời với approval đồng thời của Line Manager và IT Admin on-call."
+        ],
+        "source": "access_control_sop.txt"
+      },
+      "error": null,
+      "timestamp": "2026-04-14T17:18:37.820070"
+    }
+  ],
+  "final_answer": "### Quy trình cấp Level 2 Access:\n1. **Tạo Access Request Ticket**: Nhân viên tạo ticket trên Jira (project IT-ACCESS).\n2. **Phê duyệt**: Line Manager phê duyệt trong 1 ngày làm việc.\n3. **Kiểm tra Compliance**: IT Admin kiểm tra và cấp quyền.\n4. **Review**: IT Security review với Level 3 và Level 4.\n5. **Thông báo**: Nhân viên nhận thông báo qua email khi quyền được cấp.\n\n### SLA cho sự cố P2:\n- **Thời gian phản hồi**: Không đủ thông tin trong tài liệu nội bộ.\n- **Định nghĩa P2**: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời [8].",
+  "sources": [
+    "it_helpdesk_faq.txt",
+    "sla_p1_2026.txt",
+    "access_control_sop.txt"
+  ],
+  "confidence": 0.3,
+  "history": [
+    "[supervisor] received task: Cần cấp Level 2 access cho nhân viên chính thức mới chuyển bộ phận. Đồng thời sự",
+    "[supervisor] route=policy_tool_worker reason=task contains policy/access keyword(s): ['cấp quyền', 'level 2', 'access']",
+    "[policy_tool_worker] called MCP search_kb",
+    "[policy_tool_worker] called MCP check_access_permission(level=2, emergency=True)",
+    "[policy_tool_worker] policy_applies=True, exceptions=0",
+    "[synthesis_worker] answer generated, confidence=0.3, sources=['it_helpdesk_faq.txt', 'sla_p1_2026.txt', 'access_control_sop.txt']",
+    "[graph] completed in 3496ms"
+  ],
+  "workers_called": [
+    "policy_tool_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "policy_tool_worker",
+  "latency_ms": 3496,
+  "run_id": "run_20260414_171837_772365",
+  "worker_io_logs": [
+    {
+      "worker": "policy_tool_worker",
+      "input": {
+        "task": "Cần cấp Level 2 access cho nhân viên chính thức mới chuyển bộ phận. Đồng thời sự cố P2 đang xảy ra. Nêu quy trình cấp quyền và SLA P2 phải đáp ứng.",
+        "chunks_count": 0,
+        "needs_tool": true
+      },
+      "output": {
+        "policy_applies": true,
+        "exceptions_count": 0,
+        "mcp_calls": 2
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Cần cấp Level 2 access cho nhân viên chính thức mới chuyển bộ phận. Đồng thời sự cố P2 đang xảy ra. Nêu quy trình cấp quyền và SLA P2 phải đáp ứng.",
+        "chunks_count": 9,
+        "has_policy": true
+      },
+      "output": {
+        "answer_length": 549,
+        "sources": [
+          "it_helpdesk_faq.txt",
+          "sla_p1_2026.txt",
+          "access_control_sop.txt"
+        ],
+        "confidence": 0.3
+      },
+      "error": null
+    }
+  ],
+  "question_id": "eq15"
+}

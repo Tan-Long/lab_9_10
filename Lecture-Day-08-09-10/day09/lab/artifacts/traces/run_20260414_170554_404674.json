@@ -1,0 +1,116 @@
+{
+  "task": "Nhân viên nghỉ ốm liên tiếp 4 ngày cần cung cấp giấy tờ gì?",
+  "route_reason": "default: no specific keyword matched → retrieval_worker",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": false,
+  "hitl_decision": "",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
+      "source": "hr_leave_policy.txt",
+      "score": 0.6341,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    },
+    {
+      "text": "=== Phần 2: Quy trình xin nghỉ phép ===\n\nBước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
+      "source": "hr_leave_policy.txt",
+      "score": 0.5661,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    },
+    {
+      "text": "=== Section 4: Escalation khi cần thay đổi quyền hệ thống ===\nEscalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "source": "access_control_sop.txt",
+      "score": 0.559,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Điều 5: Hình thức hoàn tiền ===\n- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.5571,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "=== Điều 3: Điều kiện áp dụng và ngoại lệ ===\nHoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.5528,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "policy_refund_v4.txt",
+    "access_control_sop.txt",
+    "hr_leave_policy.txt"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Nhân viên nghỉ ốm liên tiếp 4 ngày cần cung cấp giấy tờ y tế từ bệnh viện. Điều này là bắt buộc theo quy định khi nghỉ trên 3 ngày liên tiếp [1].",
+  "sources": [
+    "policy_refund_v4.txt",
+    "access_control_sop.txt",
+    "hr_leave_policy.txt"
+  ],
+  "confidence": 0.57,
+  "history": [
+    "[supervisor] received task: Nhân viên nghỉ ốm liên tiếp 4 ngày cần cung cấp giấy tờ gì?",
+    "[supervisor] route=retrieval_worker reason=default: no specific keyword matched → retrieval_worker",
+    "[retrieval_worker] retrieved 5 chunks from ['policy_refund_v4.txt', 'access_control_sop.txt', 'hr_leave_policy.txt']",
+    "[synthesis_worker] answer generated, confidence=0.57, sources=['policy_refund_v4.txt', 'access_control_sop.txt', 'hr_leave_policy.txt']",
+    "[graph] completed in 1536ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 1536,
+  "run_id": "run_20260414_170554_404674",
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Nhân viên nghỉ ốm liên tiếp 4 ngày cần cung cấp giấy tờ gì?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "policy_refund_v4.txt",
+          "access_control_sop.txt",
+          "hr_leave_policy.txt"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Nhân viên nghỉ ốm liên tiếp 4 ngày cần cung cấp giấy tờ gì?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 145,
+        "sources": [
+          "policy_refund_v4.txt",
+          "access_control_sop.txt",
+          "hr_leave_policy.txt"
+        ],
+        "confidence": 0.57
+      },
+      "error": null
+    }
+  ],
+  "question_id": "eq10"
+}

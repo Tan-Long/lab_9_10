@@ -1,0 +1,144 @@
+{
+  "task": "Khi nào quyền truy cập phải bị thu hồi đối với nhân viên nghỉ việc?",
+  "route_reason": "default: no specific keyword matched → retrieval_worker",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": false,
+  "hitl_decision": "",
+  "hitl_context": "",
+  "retrieved_chunks": [
+    {
+      "text": "=== Section 5: Thu hồi quyền truy cập ===\nQuyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
+      "source": "access_control_sop.txt",
+      "score": 0.7591,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Điều 5: Hình thức hoàn tiền ===\n- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.6846,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "=== Điều 3: Điều kiện áp dụng và ngoại lệ ===\nHoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.682,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "=== Điều 2: Điều kiện được hoàn tiền ===\nKhách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
+      "source": "policy_refund_v4.txt",
+      "score": 0.6732,
+      "metadata": {
+        "source": "policy_refund_v4.txt"
+      }
+    },
+    {
+      "text": "=== Section 1: Phạm vi và mục đích ===\nTài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
+      "source": "access_control_sop.txt",
+      "score": 0.6661,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    },
+    {
+      "text": "=== Phần 2: Quy trình xin nghỉ phép ===\n\nBước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
+      "source": "hr_leave_policy.txt",
+      "score": 0.6281,
+      "metadata": {
+        "source": "hr_leave_policy.txt"
+      }
+    },
+    {
+      "text": "=== Section 4: Thiết bị và phần cứng ===\n\nQ: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
+      "source": "it_helpdesk_faq.txt",
+      "score": 0.616,
+      "metadata": {
+        "source": "it_helpdesk_faq.txt"
+      }
+    },
+    {
+      "text": "=== Section 3: Quy trình yêu cầu cấp quyền ===\n\nBước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+      "source": "access_control_sop.txt",
+      "score": 0.6094,
+      "metadata": {
+        "source": "access_control_sop.txt"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "it_helpdesk_faq.txt",
+    "hr_leave_policy.txt",
+    "policy_refund_v4.txt",
+    "access_control_sop.txt"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Quyền truy cập phải bị thu hồi đối với nhân viên nghỉ việc ngay trong ngày cuối cùng làm việc của họ. [1]",
+  "sources": [
+    "it_helpdesk_faq.txt",
+    "hr_leave_policy.txt",
+    "policy_refund_v4.txt",
+    "access_control_sop.txt"
+  ],
+  "confidence": 0.66,
+  "history": [
+    "[supervisor] received task: Khi nào quyền truy cập phải bị thu hồi đối với nhân viên nghỉ việc?",
+    "[supervisor] route=retrieval_worker reason=default: no specific keyword matched → retrieval_worker",
+    "[retrieval_worker] retrieved 8 chunks from ['it_helpdesk_faq.txt', 'hr_leave_policy.txt', 'policy_refund_v4.txt', 'access_control_sop.txt']",
+    "[synthesis_worker] answer generated, confidence=0.66, sources=['it_helpdesk_faq.txt', 'hr_leave_policy.txt', 'policy_refund_v4.txt', 'access_control_sop.txt']",
+    "[graph] completed in 1239ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 1239,
+  "run_id": "run_20260414_171819_974626",
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Khi nào quyền truy cập phải bị thu hồi đối với nhân viên nghỉ việc?",
+        "top_k": 8
+      },
+      "output": {
+        "chunks_count": 8,
+        "sources": [
+          "it_helpdesk_faq.txt",
+          "hr_leave_policy.txt",
+          "policy_refund_v4.txt",
+          "access_control_sop.txt"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Khi nào quyền truy cập phải bị thu hồi đối với nhân viên nghỉ việc?",
+        "chunks_count": 8,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 105,
+        "sources": [
+          "it_helpdesk_faq.txt",
+          "hr_leave_policy.txt",
+          "policy_refund_v4.txt",
+          "access_control_sop.txt"
+        ],
+        "confidence": 0.66
+      },
+      "error": null
+    }
+  ],
+  "question_id": "eq05"
+}

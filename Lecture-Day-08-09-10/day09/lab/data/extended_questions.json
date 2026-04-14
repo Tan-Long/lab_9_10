@@ -1,0 +1,167 @@
+[
+  {
+    "id": "eq01",
+    "question": "Level 4 Admin Access cần ai phê duyệt và mất bao nhiêu ngày?",
+    "expected_answer": "Level 4 (Admin Access) dành cho DevOps, SRE, IT Admin. Cần phê duyệt từ IT Manager và CISO (2 người). Thời gian xử lý 5 ngày làm việc. Yêu cầu thêm: training bắt buộc về security policy.",
+    "expected_sources": ["access_control_sop.txt"],
+    "expected_route": "policy_tool_worker",
+    "difficulty": "easy",
+    "category": "Access Control",
+    "test_type": "single_worker",
+    "note": "Test Level 4 access details — khác với Level 3 đã test"
+  },
+  {
+    "id": "eq02",
+    "question": "Nhân viên làm thêm giờ vào ngày lễ được tính lương bao nhiêu phần trăm?",
+    "expected_answer": "Làm thêm giờ vào ngày lễ được tính 300% lương giờ tiêu chuẩn (theo Phần 3 chính sách HR). Ngày thường là 150%, cuối tuần là 200%.",
+    "expected_sources": ["hr_leave_policy.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "easy",
+    "category": "HR Policy",
+    "test_type": "single_worker",
+    "note": "Test overtime rate on holiday — numeric fact from HR policy"
+  },
+  {
+    "id": "eq03",
+    "question": "Nhân viên có 7 năm kinh nghiệm được nghỉ phép năm bao nhiêu ngày?",
+    "expected_answer": "Nhân viên trên 5 năm kinh nghiệm được 18 ngày nghỉ phép năm. Tối đa 5 ngày chưa dùng có thể chuyển sang năm tiếp theo.",
+    "expected_sources": ["hr_leave_policy.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "easy",
+    "category": "HR Policy",
+    "test_type": "single_worker",
+    "note": "Test annual leave by seniority tier — 3-tier system"
+  },
+  {
+    "id": "eq04",
+    "question": "Mỗi tài khoản VPN được kết nối tối đa bao nhiêu thiết bị?",
+    "expected_answer": "Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc. Phần mềm VPN công ty dùng là Cisco AnyConnect.",
+    "expected_sources": ["it_helpdesk_faq.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "easy",
+    "category": "IT Helpdesk",
+    "test_type": "single_worker",
+    "note": "Test VPN device limit — numeric fact from FAQ"
+  },
+  {
+    "id": "eq05",
+    "question": "Khi nào quyền truy cập phải bị thu hồi đối với nhân viên nghỉ việc?",
+    "expected_answer": "Theo Section 5 SOP, nhân viên nghỉ việc phải thu hồi quyền ngay trong ngày cuối làm việc. Hết hạn contract: thu hồi đúng ngày hết hạn. Chuyển bộ phận: điều chỉnh trong 3 ngày làm việc.",
+    "expected_sources": ["access_control_sop.txt"],
+    "expected_route": "policy_tool_worker",
+    "difficulty": "medium",
+    "category": "Access Control",
+    "test_type": "single_worker",
+    "note": "Test access revocation conditions — multiple cases"
+  },
+  {
+    "id": "eq06",
+    "question": "Ticket P2 có SLA phản hồi và xử lý là bao lâu? Escalation sau bao nhiêu phút?",
+    "expected_answer": "Ticket P2: phản hồi ban đầu trong 2 giờ, resolution trong 1 ngày làm việc. Tự động escalate sau 90 phút không có phản hồi.",
+    "expected_sources": ["sla_p1_2026.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "medium",
+    "category": "SLA",
+    "test_type": "multi_detail",
+    "note": "Test P2 SLA details — different tier from P1 already tested"
+  },
+  {
+    "id": "eq07",
+    "question": "Sau khi resolve sự cố P1, incident report phải được viết trong bao lâu?",
+    "expected_answer": "Theo Bước 5 quy trình P1, sau khi khắc phục sự cố phải viết incident report trong vòng 24 giờ.",
+    "expected_sources": ["sla_p1_2026.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "easy",
+    "category": "SLA",
+    "test_type": "single_worker",
+    "note": "Test incident report deadline — specific post-resolution requirement"
+  },
+  {
+    "id": "eq08",
+    "question": "Sau khi khách hàng được xác nhận đủ điều kiện hoàn tiền, Finance Team mất bao nhiêu ngày để xử lý?",
+    "expected_answer": "Finance Team xử lý hoàn tiền trong 3-5 ngày làm việc sau khi nhận yêu cầu từ CS Agent. CS Agent xem xét trong 1 ngày làm việc trước đó.",
+    "expected_sources": ["policy_refund_v4.txt"],
+    "expected_route": "policy_tool_worker",
+    "difficulty": "easy",
+    "category": "Refund",
+    "test_type": "single_worker",
+    "note": "Test refund process timeline — numeric fact from Điều 4"
+  },
+  {
+    "id": "eq09",
+    "question": "Nhân viên sau khi sinh con được nghỉ bao lâu và có quyền lợi gì thêm trong 12 tháng đầu?",
+    "expected_answer": "Theo chính sách HR: nghỉ thai sản 6 tháng theo Luật Lao động. Thêm quyền lợi: 1 tiếng/ngày để nuôi con nhỏ trong 12 tháng đầu sau sinh.",
+    "expected_sources": ["hr_leave_policy.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "medium",
+    "category": "HR Policy",
+    "test_type": "multi_detail",
+    "note": "Test maternity leave policy with multiple details"
+  },
+  {
+    "id": "eq10",
+    "question": "Nhân viên nghỉ ốm liên tiếp 4 ngày cần cung cấp giấy tờ gì?",
+    "expected_answer": "Theo chính sách HR (Phần 1.2), nếu nghỉ ốm trên 3 ngày liên tiếp cần giấy tờ y tế từ bệnh viện. Ngoài ra phải thông báo cho Line Manager trước 9:00 sáng ngày nghỉ đầu tiên.",
+    "expected_sources": ["hr_leave_policy.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "medium",
+    "category": "HR Policy",
+    "test_type": "single_worker",
+    "note": "Test sick leave documentation requirement — triggered condition"
+  },
+  {
+    "id": "eq11",
+    "question": "Ngày nào trong tuần là ngày onsite bắt buộc theo chính sách remote work?",
+    "expected_answer": "Theo chính sách remote work (Phần 4.1), ngày onsite bắt buộc là Thứ 3 và Thứ 5 theo lịch team. Các ngày còn lại có thể remote tối đa 2 ngày/tuần với điều kiện Team Lead phê duyệt.",
+    "expected_sources": ["hr_leave_policy.txt"],
+    "expected_route": "retrieval_worker",
+    "difficulty": "easy",
+    "category": "HR Policy",
+    "test_type": "single_worker",
+    "note": "Test mandatory onsite days — specific days not obvious"
+  },
+  {
+    "id": "eq12",
+    "question": "IT Security thực hiện access review định kỳ mỗi bao lâu và bất thường phải báo cáo trong bao lâu?",
+    "expected_answer": "Theo Section 6 SOP, IT Security thực hiện access review mỗi 6 tháng. Mọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
+    "expected_sources": ["access_control_sop.txt"],
+    "expected_route": "policy_tool_worker",
+    "difficulty": "medium",
+    "category": "Access Control",
+    "test_type": "multi_detail",
+    "note": "Test audit policy details — two distinct numeric facts"
+  },
+  {
+    "id": "eq13",
+    "question": "Nhân viên mới trong 30 ngày đầu được cấp quyền gì và ai phê duyệt?",
+    "expected_answer": "Nhân viên mới trong 30 ngày đầu chỉ được cấp Level 1 (Read Only). Người phê duyệt là Line Manager. Thời gian xử lý 1 ngày làm việc.",
+    "expected_sources": ["access_control_sop.txt"],
+    "expected_route": "policy_tool_worker",
+    "difficulty": "easy",
+    "category": "Access Control",
+    "test_type": "single_worker",
+    "note": "Test Level 1 access for new employees — probation period rule"
+  },
+  {
+    "id": "eq14",
+    "question": "Mức phạt cụ thể khi nhân viên vi phạm chính sách overtime (làm thêm không có phê duyệt bằng văn bản) là bao nhiêu?",
+    "expected_answer": "Thông tin về mức phạt khi vi phạm quy định overtime KHÔNG có trong tài liệu chính sách HR hiện tại. Tài liệu chỉ nêu điều kiện: làm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản. Cần liên hệ HR để biết thêm.",
+    "expected_sources": [],
+    "expected_route": "retrieval_worker",
+    "difficulty": "hard",
+    "category": "Insufficient Context",
+    "test_type": "abstain",
+    "note": "Anti-hallucination test — penalty for overtime violation not in docs"
+  },
+  {
+    "id": "eq15",
+    "question": "Cần cấp Level 2 access cho nhân viên chính thức mới chuyển bộ phận. Đồng thời sự cố P2 đang xảy ra. Nêu quy trình cấp quyền và SLA P2 phải đáp ứng.",
+    "expected_answer": "Hai quy trình song song: (1) Level 2 access: Nhân viên chính thức cần phê duyệt từ Line Manager + IT Admin, thời gian xử lý 2 ngày làm việc. Khi chuyển bộ phận, điều chỉnh quyền trong 3 ngày làm việc. (2) SLA P2: phản hồi ban đầu trong 2 giờ, resolution trong 1 ngày làm việc, tự động escalate sau 90 phút không phản hồi.",
+    "expected_sources": ["access_control_sop.txt", "sla_p1_2026.txt"],
+    "expected_route": "policy_tool_worker",
+    "difficulty": "hard",
+    "category": "Multi-hop",
+    "test_type": "multi_worker_multi_doc",
+    "note": "Cross-doc multi-hop: access_control + P2 SLA — tests non-P1 SLA knowledge"
+  }
+]
