@@ -77,6 +77,20 @@ def clean_rows(
     4) Quarantine: chunk_text rỗng hoặc effective_date rỗng sau chuẩn hoá.
     5) Loại trùng nội dung chunk_text (giữ bản đầu).
     6) Fix stale refund: policy_refund_v4 chứa '14 ngày làm việc' → 7 ngày.
+
+    Rule mới (Sprint 2):
+    7) Quarantine: exported_at rỗng/không có → missing_exported_at. Bảo đảm mọi chunk có thể
+       truy vết nguồn export; thiếu timestamp là dấu hiệu pipeline upstream lỗi.
+       metric_impact: Row 12 (sla_p1_2026, exported_at="") → quarantine_records +1.
+    8) Quarantine: chunk_text độ dài < 30 ký tự sau strip → chunk_too_short. Chunk quá ngắn
+       không đủ ngữ cảnh cho retrieval (ví dụ reply "OK.", "N/A"). Được kiểm tra TRƯỚC dedup
+       để không chiếm slot trong seen_text.
+       metric_impact: Row 11 (policy_refund_v4, "OK.") → quarantine_records +1.
+    9) Quarantine: hr_leave_policy chunk chứa "10 ngày phép năm" dù effective_date hợp lệ →
+       hr_stale_content_10d_annual. Ngăn bản HR lỗi (content conflict) trôi qua khi ngày
+       effective_date đã được cập nhật nhưng nội dung vẫn giữ số cũ.
+       metric_impact: Row 13 (hr_leave_policy 2026-03-01, chứa "10 ngày phép năm") →
+       quarantine_records +1; nếu KHÔNG có rule này Row 13 sẽ vào cleaned và E6 sẽ HALT.
     """
     quarantine: List[Dict[str, Any]] = []
     seen_text: set[str] = set()
@@ -91,6 +105,13 @@ def clean_rows(
 
         if doc_id not in ALLOWED_DOC_IDS:
             quarantine.append({**raw, "reason": "unknown_doc_id"})
+            continue
+
+        # Rule 7 (new): quarantine_missing_exported_at
+        # Exported_at là watermark truy vết nguồn export. Row thiếu trường này
+        # không thể đo freshness và nên bị cách ly.
+        if not (exported_at or "").strip():
+            quarantine.append({**raw, "reason": "missing_exported_at"})
             continue
 
         eff_norm, eff_err = _normalize_effective_date(eff_raw)
@@ -111,8 +132,35 @@ def clean_rows(
             )
             continue
 
+        # Rule 9 (new): quarantine_hr_stale_content_10d_annual
+        # Phát hiện xung đột nội dung HR: bản 2025 có 10 ngày phép, bản 2026 có 12 ngày.
+        # Ngay cả khi effective_date đã được cập nhật sang 2026, nếu nội dung vẫn ghi
+        # "10 ngày phép năm" thì đây là bản conflict và cần cách ly.
+        if doc_id == "hr_leave_policy" and "10 ngày phép năm" in (text or ""):
+            quarantine.append(
+                {
+                    **raw,
+                    "reason": "hr_stale_content_10d_annual",
+                    "effective_date_normalized": eff_norm,
+                }
+            )
+            continue
+
         if not text:
             quarantine.append({**raw, "reason": "missing_chunk_text"})
+            continue
+
+        # Rule 8 (new): quarantine_chunk_too_short
+        # Chunk quá ngắn (< 30 ký tự) thiếu ngữ cảnh cho retrieval; thường là lỗi export
+        # (header, placeholder, mẫu rỗng). Kiểm tra TRƯỚC dedup để tránh chiếm slot dedup.
+        if len(text.strip()) < 30:
+            quarantine.append(
+                {
+                    **raw,
+                    "reason": "chunk_too_short",
+                    "chunk_length": len(text.strip()),
+                }
+            )
             continue
 
         key = _norm_text(text)

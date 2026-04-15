@@ -112,5 +112,42 @@ def run_expectations(cleaned_rows: List[Dict[str, Any]]) -> Tuple[List[Expectati
         )
     )
 
+    # E7 (new): chunk_min_length_60_warn — warn nếu chunk quá ngắn sau clean.
+    # Cleaning rule 8 quarantine < 30 chars; expectation này cảnh báo ở ngưỡng rộng hơn (< 60)
+    # để phát hiện chunk "vừa sống sót" qua quarantine nhưng vẫn quá ngắn cho retrieval.
+    # metric_impact: Row 6 ("Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp." ≈ 52 chars)
+    # sẽ kích hoạt WARN trong mọi run chuẩn → short_chunks=1. Nếu inject nhiều chunk ngắn
+    # hơn 60 chars → short_chunks tăng.
+    short_60 = [r for r in cleaned_rows if len((r.get("chunk_text") or "")) < 60]
+    ok7 = len(short_60) == 0
+    results.append(
+        ExpectationResult(
+            "chunk_min_length_60_warn",
+            ok7,
+            "warn",
+            f"short_chunks={len(short_60)}",
+        )
+    )
+
+    # E8 (new): all_required_doc_ids_present — warn nếu thiếu bất kỳ doc_id nào trong cleaned.
+    # Pipeline phải đảm bảo mọi nguồn đều có đại diện; nếu một nguồn bị loại hoàn toàn
+    # (ví dụ: toàn bộ SLA bị quarantine do lỗi schema), agent sẽ mù thông tin SLA.
+    # metric_impact: Normal run → PASS (4/4 doc_ids có mặt). Inject scenario: xóa toàn bộ
+    # sla_p1_2026 rows → WARN (sla_p1_2026 missing). Xem group_report metric_impact table.
+    required_doc_ids = frozenset(
+        {"policy_refund_v4", "sla_p1_2026", "it_helpdesk_faq", "hr_leave_policy"}
+    )
+    present_doc_ids = {(r.get("doc_id") or "").strip() for r in cleaned_rows}
+    missing_doc_ids = sorted(required_doc_ids - present_doc_ids)
+    ok8 = len(missing_doc_ids) == 0
+    results.append(
+        ExpectationResult(
+            "all_required_doc_ids_present",
+            ok8,
+            "warn",
+            f"missing_doc_ids={missing_doc_ids}",
+        )
+    )
+
     halt = any(not r.passed and r.severity == "halt" for r in results)
     return results, halt
