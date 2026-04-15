@@ -1,10 +1,12 @@
 # Báo Cáo Nhóm — Lab Day 10: Data Pipeline & Data Observability
 
-**Tên nhóm:** Cá nhân  
+**Tên nhóm:** Nhóm 3  
 **Thành viên:**
 | Tên | Vai trò (Day 10) | Email |
 |-----|------------------|-------|
-| Tan Long | Ingestion / Raw Owner + Cleaning & Quality Owner + Embed & Idempotency Owner + Monitoring / Docs Owner | tanlong04.work@gmail.com |
+| Long | Ingestion / Raw Owner | tanlong04.work@gmail.com |
+| Quang | Cleaning & Quality Owner | |
+| Huy | Embed & Idempotency Owner | |
 
 **Ngày nộp:** 2026-04-15  
 **Branch:** _lab9_  
