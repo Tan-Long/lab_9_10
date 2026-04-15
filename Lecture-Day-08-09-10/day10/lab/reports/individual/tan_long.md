@@ -3,7 +3,8 @@
 **Họ và tên:** Tan Long  
 **Vai trò:** Toàn bộ pipeline — Ingestion + Cleaning & Quality + Embed + Monitoring  
 **Ngày nộp:** 2026-04-15  
-**run_id tham chiếu:** `sprint2-clean`, `sprint1`, `inject-bad`
+**run_id tham chiếu:** `sprint2-clean`, `sprint1`, `inject-bad`  
+**Grading run_id:** `sprint2-clean` → `artifacts/eval/grading_run.jsonl`
 
 ---
 
@@ -71,3 +72,20 @@ Cho `q_leave_version`: cả hai run đều `hits_forbidden=no, top1_doc_expected
 ## 5. Cải tiến tiếp theo
 
 Nếu có thêm 2 giờ, tôi sẽ **đo freshness ở 2 boundary** thay vì 1: (1) `ingest_at` = thời điểm pipeline đọc CSV, (2) `publish_at` = thời điểm embed xong vào Chroma. Hiện tại manifest chỉ có `latest_exported_at` (watermark nguồn) và `run_timestamp` (publish), nhưng chưa tính SLA riêng cho lag ingest→publish. Ghi cả hai vào manifest và vẽ alert nếu lag > 5 phút — cải tiến này đáp ứng Distinction criterion (b).
+
+---
+
+## Grading JSONL — kết quả chính thức
+
+**File:** `artifacts/eval/grading_run.jsonl` | **Collection:** `day10_kb` | **top_k=5**
+
+| ID | contains_expected | hits_forbidden | top1_doc_matches | top1_doc_id |
+|----|:-----------------:|:--------------:|:----------------:|-------------|
+| `gq_d10_01` | ✅ true | ✅ false | — | policy_refund_v4 |
+| `gq_d10_02` | ✅ true | ✅ false | — | sla_p1_2026 |
+| `gq_d10_03` | ✅ true | ✅ false | ✅ true | hr_leave_policy |
+
+Tất cả 3 câu đạt điều kiện **Merit** theo SCORING.md:
+- `gq_d10_01`: `contains_expected=true` + `hits_forbidden=false` — chunk "7 ngày" đúng, không còn "14 ngày làm việc" trong top-5.
+- `gq_d10_02`: `contains_expected=true` — "15 phút" và "4 giờ" có trong top-5 của sla_p1_2026.
+- `gq_d10_03`: `contains_expected=true` + `hits_forbidden=false` + `top1_doc_matches=true` — "12 ngày phép năm" đúng, không có "10 ngày phép năm", top-1 đúng từ hr_leave_policy. Đây là bằng chứng Rule 9 (`quarantine_hr_stale_content_10d_annual`) hoạt động hiệu quả.
